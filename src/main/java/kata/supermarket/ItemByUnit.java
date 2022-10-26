@@ -3,7 +3,7 @@ package kata.supermarket;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class ItemByUnit implements Item {
+public class ItemByUnit implements Item, Comparable<ItemByUnit> {
 
     private final Product product;
     private DiscountType discountType;
@@ -25,6 +25,10 @@ public class ItemByUnit implements Item {
         this.discountType = discountType;
     }
 
+    @Override
+    public int compareTo(ItemByUnit o) {
+        return product.pricePerUnit().compareTo(o.price());
+    }
 
     @Override
     public boolean equals(Object o) {
