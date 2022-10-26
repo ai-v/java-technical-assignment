@@ -53,8 +53,7 @@ public class Basket {
                     .map(item -> (ItemByUnit) item)
                     .collect(Collectors.toList());
 
-            DiscountCalculator.calculateDiscount(itemsByUnit);
-            return BigDecimal.ZERO;
+            return DiscountCalculator.calculateDiscount(itemsByUnit);
         }
 
         private BigDecimal calculate() {

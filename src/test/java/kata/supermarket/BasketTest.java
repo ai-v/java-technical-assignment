@@ -16,7 +16,7 @@ class BasketTest {
 
     @DisplayName("basket provides its total value when containing...")
     @MethodSource
-    @ParameterizedTest(name = "{0}")
+    @ParameterizedTest(name = "basketProvidesTotalValue")
     void basketProvidesTotalValue(String description, String expectedTotal, Iterable<Item> items) {
         final Basket basket = new Basket();
         items.forEach(basket::add);
@@ -29,8 +29,17 @@ class BasketTest {
                 aSingleItemPricedPerUnit(),
                 multipleItemsPricedPerUnit(),
                 aSingleItemPricedByWeight(),
-                multipleItemsPricedByWeight()
+                multipleItemsPricedByWeight(),
+                multipleItemsWithAndWithoutPromo()
         );
+    }
+
+    private static Arguments multipleItemsWithAndWithoutPromo() {
+        return Arguments.of("multiple items with and without promo", "3.99",
+                Arrays.asList(
+                        aPintOfMilk(),
+                        aCroissant_promoBuyOneGetOneFree(),
+                        aCroissant_promoBuyOneGetOneFree()));
     }
 
     private static Arguments aSingleItemPricedByWeight() {
@@ -78,5 +87,11 @@ class BasketTest {
 
     private static Item twoHundredGramsOfPickAndMix() {
         return aKiloOfPickAndMix().weighing(new BigDecimal(".2"));
+    }
+
+    private static Item aCroissant_promoBuyOneGetOneFree() {
+        ItemByUnit croissant = new ItemByUnit(new Product(new BigDecimal("3.50")));
+        croissant.setDiscountType(DiscountType.BUY_ONE_GET_ONE_FREE);
+        return croissant;
     }
 }
