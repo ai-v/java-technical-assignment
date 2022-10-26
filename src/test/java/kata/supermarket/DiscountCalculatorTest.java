@@ -22,9 +22,13 @@ public class DiscountCalculatorTest {
     }
 
     @Test
-    public void returnZero_whenSingleItem() {
+    public void returnsZero_whenSingleItem() {
         BigDecimal price = BigDecimal.valueOf(1.49);
         List<ItemByUnit> item = List.of(new ItemByUnit(new Product(price)));
         assertEquals(BigDecimal.ZERO, calculator.calculateDiscount(item));
     }
+
+
+
+
 }
