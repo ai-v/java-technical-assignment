@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DiscountCalculator {
-    public BigDecimal calculateDiscount(List<ItemByUnit> items) {
+    public static BigDecimal calculateDiscount(List<ItemByUnit> items) {
         if (items.size() <=1) {
             return BigDecimal.ZERO;
         }
